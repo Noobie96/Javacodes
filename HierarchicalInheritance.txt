@@ -1,0 +1,26 @@
+public class Vehicle {
+	void type() {
+		System.out.println("vehicle type is sedan");
+	}
+}
+class Car extends Vehicle{
+	void color() {
+		System.out.println("color of the car is red");
+	}
+	void Type() {
+		System.out.println("car type is sedan");
+	}
+}
+class Tata extends Vehicle{
+	void model() {
+		System.out.println("Car model is innova");
+	}
+	public static void main(String args[]) {
+	Tata obj = new Tata();
+	obj.model();
+	obj.type();
+	Car obj1 = new Car();
+	obj1.Type();
+	obj1.color();
+	}
+}

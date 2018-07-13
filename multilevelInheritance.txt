@@ -1,0 +1,26 @@
+public class Department {
+	void departmentname() {
+		System.out.println("IT is the department name");
+		
+	}
+}
+class Subject extends Department{
+	void subname() {
+		System.out.println("Operating System is one of the subject in IT");
+	}
+}
+
+class Professor extends Subject{
+	void Professorname() {
+		System.out.println("prof.Kamal handles Operating System subject ");
+	}
+}
+
+class Result{
+	public static void main(String args[]) {
+		Professor p = new Professor();
+		p.Professorname();
+		p.subname();
+		p.departmentname();
+	}
+}

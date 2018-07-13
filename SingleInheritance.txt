@@ -1,0 +1,18 @@
+public class Animal {
+	void eat() {
+		System.out.println("Animals can eat");
+	}
+	void run() {
+		System.out.println("Animals can sleep");}
+}
+class Bear extends Animal{
+	void sleep() {
+		System.out.println("Bear can sleep for 16hours");
+	}
+public static void main(String args[]) {
+	Bear obj = new Bear();
+	obj.eat();
+	obj.run();
+	obj.sleep();	
+}
+}
