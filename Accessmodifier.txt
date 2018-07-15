@@ -1,0 +1,27 @@
+package pk1;
+class Accessmodifier{
+public int x=1;
+private int y=2;
+protected int z=3;
+int a=4;
+public void print(){
+System.outprintln("x:"+x);
+}
+private void display(){
+System.out.println("Y:"+y);
+}
+protected void view(){
+System.out.println("z:"+z);
+}
+void show(){
+System.out.println("a:"+a));
+}
+}
+class result{
+public static void main(String args[]){
+Accessmodifier acc = new Accessmodifier();
+acc.print();
+acc.display();
+acc.view();
+acc.show();
+}
