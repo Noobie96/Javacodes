@@ -1,10 +1,9 @@
-import pk1;
+package Pk1;
 class Modifier extends Accessmodifier{
 public static void main(String args[]){
 Modifier Mo = new Modifier();
 Mo.print();
 Mo.show();
 Mo.view();
-Mo.display();
 }
 }
