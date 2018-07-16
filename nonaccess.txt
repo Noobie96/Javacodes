@@ -1,41 +1,40 @@
-package pk2;
+package phone;
 import java.util.Scanner;
-import java.io.*;
-
 abstract class Phone{
 
-string s = "Connecting people";
-Static string name = 'Thinesh';
+String s = "Connecting people";
+static String name = "Thinesh";
 
 
-Final void Motorola(){
+final void Motorola(){
 System.out.println("Hello Moto");
 }
 
-abstract void Nokia(){
+void Nokia(){
 System.out.println("Nokia-"+s);
 }
 
 void display(){
 System.out.println("name:"+name);
 }
-}
-class Smartphone extends Phone{
 
-Scanner sc = new Scanner(System.in);
-void show(){
-System.out.println("Enter a valid name");
-string name = sc.nextLine();
-System.out.println("new name:"+name);
 }
+
+class Output extends Phone{
+	void show(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a valid name");
+		String name = sc.nextLine();
+		System.out.println("new name:"+name);
+		}
+
 public static void main(String args[]){
 
-Smartphone smart =  new Smartphone();
+Output smart =  new Output();
 smart.Motorola();
 smart.Nokia();
 smart.display();
 smart.show();
-
-
 }
 }
+
