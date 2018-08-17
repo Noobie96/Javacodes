@@ -1,0 +1,43 @@
+// login jsp
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<html>
+    <head>
+        <title>login form</title>
+    </head>
+    <body>
+        <form method="post" action="userlogin">
+               
+        username:<input type="text" name="User_Name" /><br/>
+        password:<input type="text" name="Password" /><br/>
+        
+        <input type="submit" value="login" />
+        <a href="Registeration.jsp">Register</a>
+        </form>
+    </body>
+</html>
+
+
+
+// Registeration jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Registeration page</title>
+</head>
+<body>
+<form method="post" action="Userregisteration">
+Name:<input type="text" name="Name"/><br/>
+Username:<input type="text" name="User_Name"/><br/>
+Password:<input type="text" name="Password"/><br/>
+Email-ID:<input type="text" name="Email_ID"/><br/>
+contact Number:<input type="text" name="Contact_Number"/><br/>
+<input type="submit" value="registeration">
+</form>
+</body>
+</html>

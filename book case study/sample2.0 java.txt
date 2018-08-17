@@ -1,0 +1,86 @@
+//validation java
+
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+public class Validate
+ {
+	static Connection con = null;
+	static PreparedStatement ps=null;
+	static ResultSet rs = null;
+	static boolean st;
+	public static boolean checkLogin(String unames,String passs) 
+     {
+       st =false;
+      try{
+
+	    System.out.println("Login");
+         Class.forName("com.mysql.jdbc.Driver");
+
+ 	
+          con=DriverManager.getConnection
+                        ("jdbc:mysql://localhost:3306/sys","thinesh","thinesh");
+         ps =con.prepareStatement("select User_Name,Password from registeration where User_Name=? and Password=?");
+         ps.setString(1, unames);
+         ps.setString(2, passs);
+         rs =ps.executeQuery();
+         if(rs.next()){
+        	st=true;
+         }
+        
+      }catch(Exception e)
+      {
+          e.printStackTrace();
+      }
+         return st;                 
+  }
+ 
+	
+}  
+ 
+ 
+ // Userlogin java
+
+
+
+package com.example;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class Userlogin extends HttpServlet {
+ 
+    
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        String unames = request.getParameter("User_Name");
+        String passs = request.getParameter("Password");
+        boolean result=Validate.checkLogin(unames, passs);
+        if(result==true)
+        { 
+        	out.print("hiii");
+            RequestDispatcher rs = request.getRequestDispatcher("success.jsp");
+            rs.forward(request, response);
+        }
+        else
+        {
+           
+           RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
+           rs.include(request, response);
+           out.println("Username or Password incorrect");
+        }
+    }  
+
+
+}
+
+

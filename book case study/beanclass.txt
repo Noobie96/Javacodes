@@ -1,0 +1,157 @@
+
+
+//bean class
+package com.beanclass
+public class book{
+int callno;
+int Book_Storeid;
+String Book_Name;
+String Author;
+String Publisher;
+int Quantity;
+int Price;
+
+public int getcallno(){
+return callno;}
+public void setcallno(String callno){
+this.callno=callno;}
+
+
+
+
+public int Book_Storeid(){
+return Book_Storeid;}
+public void setBook_Storeid(String Book_Storeid){
+this.Book_Storeid=Book_Storeid;}
+
+
+
+public int getBook_Name(){
+return Book_Name;}
+public void setBook_Name(String Book_Name){
+this.Book_Name=Book_Name;}
+
+
+
+public int getAuthor(){
+return Author;}
+public void setAuthor(String Author){
+this.Author=Author;}
+
+
+
+public int getPublisher(){
+return Publisher;}
+public void setPublisher(String Publisher){
+this.Publisher=Publisher;}
+
+
+public int getQuantity(){
+return Quantity;}
+public void setQuantity(String Quantity){
+this.callno=Quantity}
+
+
+public int getPrice(){
+return Price;}
+public void setPrice(String Price){
+this.Price=Price;}
+}
+
+
+
+
+//Servlet for bean class
+import com.bean.*;
+
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+public class QueryServlet extends HttpServlet
+{
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+
+try{
+try{  
+Class.forName("com.mysql.jdbc.Driver");  
+}catch(ClassNotFoundException e){
+e.printStackTrace();
+}
+
+List bookstore = populateBookList("Book");
+
+request.setAttribute("Bookstore",bookstore);
+
+RequestDispatcher rd=request.getRequestDisptacher("Welcome.jsp");
+
+rd.forward(request,response);
+}
+
+
+protected void doPost(HttpServletRequest arg0, HttpServletResponse arg1)
+throws ServletException, IOException {
+doGet(arg0,arg1);
+}
+private List populateBookLost( String bookType){
+Connection conn=null;
+ArrayList books = new ArrayList();
+ try{
+Connection con=DriverManager.getConnection(  
+		"jdbc:mysql://localhost:3306/sys","thinesh","thinesh");
+Statement stmt = conn.createStatement();
+Resultset rset = stmt.executeQuery("select callno,Book_Storeid,Book_Name,Author,Publisher,Quantity,Price from bookstore where section ="+bookType+""order by type");
+Book book = null;
+while(rset.next()){
+book = new Book();
+book.setcallno(rset.getcallno(1));
+book.setBook_Storeid(rset.getBook_Storeid(2));
+book.setBook_Name(rset.getBook_Name(3));
+book.setAuthor(rset.getAuthor(4));
+book.setPublisher(rset.getPublisher(5));
+book.setQuantity(rset.getQuantity(6));
+book.setPrice(rset.getPrice(7));
+
+
+System.out.println("Adding"+book.getTitle()+ "to book list");
+book.add(book);
+}
+rset.close();
+}catch(SQLException e1){
+e1.printStackTrace();
+}finally{
+try{
+conn.close();
+}catch(Exception exp){}
+}
+return books;
+}
+}
+
+
+
+web.xml mapping:
+<servlet>
+<servlet-name>QueryServlet</servlet>
+<servlet-class>com.beanclass.QueryServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>QueryServlet</servlet-name>
+<url-pattern>/querydb</url-pattern>
+</servlet-mapping>
